@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https://openweathermap.org;
+    connect-src 'self' https://ip-api.com https://api.openweathermap.org https://ipinfo.io;
+  ">
+  <title>Mini-Mode</title>
+  <link rel="stylesheet" href="styles/core.css" />
+  <link rel="stylesheet" href="styles/mini-mode.css" />
+</head>
+<body class="mini-mode">
+  <div class="mini-drag">
+    <main class="dashboard">
+      <section class="widget" id="clock-widget-mini">🕒 <span id="clockMini">--:--</span></section>
+
+      <section class="widget wellness-mini" id="wellness-widget-mini">
+        <div class="wellness-row">
+          <button class="icon-reminder" title="Alongar">🧘</button>
+          <button class="icon-reminder" title="Pausar">🛑</button>
+          <button class="icon-reminder" title="Beber Água">💧</button>
+        </div>
+      </section>
+
+      <section class="widget" id="weather-widget-mini">☁️ <span id="weatherMini">--°C</span></section>
+
+      <section class="widget" id="task-widget-mini">✅ <span id="taskMini">Nenhuma tarefa</span></section>
+
+      <section class="widget quick-links-mini">
+        <div class="icon-grid-mini">
+          <a href="https://google.com" class="icon-mini google" title="Google" target="_blank">G</a>
+          <a href="https://gmail.com" class="icon-mini gmail" title="Gmail" target="_blank">M</a>
+          <a href="https://youtube.com" class="icon-mini youtube" title="YouTube" target="_blank">Y</a>
+          <a href="https://drive.google.com" class="icon-mini drive" title="Drive" target="_blank">D</a>
+          <a href="https://instagram.com" class="icon-mini instagram" title="Instagram" target="_blank">I</a>
+          <a href="https://linkedin.com" class="icon-mini linkedin" title="LinkedIn" target="_blank">In</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="mini-script.js"></script>
+</body>
+</html>

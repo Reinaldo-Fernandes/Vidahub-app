@@ -1,0 +1,139 @@
+/*
+ * Arquivo: effects.css
+ * Define temas visuais baseados no clima e animações de fundo.
+ */
+
+/* ==================== Temas Climáticos ==================== */
+body.weather-clear {
+  background-image: linear-gradient(to bottom right, #87CEEB, #B0E0E6);
+  color: #333;
+}
+body.weather-clear h1 { color: #1a1a1a; }
+
+body.weather-partly-cloudy {
+  background-image: linear-gradient(to bottom right, #A9D1EF, #E0E9F0);
+  color: #333;
+}
+body.weather-partly-cloudy h1 { color: #1a1a1a; }
+
+body.weather-cloudy {
+  background-image: linear-gradient(to bottom right, #645f5f, #C0C0C0);
+  color: #000;
+}
+body.weather-cloudy h1 { color: #1a1a1a; }
+
+body.weather-rain {
+  background-image: linear-gradient(to bottom right, #5C6B73, #8797A1);
+  color: #F0F0F0;
+}
+body.weather-rain h1 { color: #fff; }
+
+body.weather-thunderstorm {
+  background-image: linear-gradient(to bottom right, #3C4A51, #626F76);
+  color: #F0F0F0;
+}
+body.weather-thunderstorm h1 { color: #fff; }
+
+body.weather-snow {
+  background-image: linear-gradient(to bottom right, #E0FFFF, #F0F8FF);
+  color: #333;
+}
+body.weather-snow h1 { color: #1a1a1a; }
+
+body.weather-mist {
+  background-image: linear-gradient(to bottom right, #B0B0B0, #D0D0D0);
+  color: #333;
+}
+body.weather-mist h1 { color: #1a1a1a; }
+
+body.weather-night {
+  background-image: linear-gradient(to bottom right, #0F2027, #203A43, #2C5364);
+  color: #F0F0F0;
+}
+body.weather-night h1 { color: #e7e4e4; }
+
+/* ==================== Animações Climáticas ==================== */
+.background-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Nuvens */
+.cloud {
+  position: absolute;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: floatClouds linear infinite;
+  z-index: -1;
+}
+.cloud:nth-child(1) { width: 200px; height: 60px; top: 10%; left: -20%; animation-duration: 40s; }
+.cloud:nth-child(2) { width: 300px; height: 80px; top: 30%; left: -30%; animation-duration: 60s; }
+.cloud:nth-child(3) { width: 250px; height: 70px; top: 60%; left: -25%; animation-duration: 50s; }
+.cloud:nth-child(4) { width: 180px; height: 50px; top: 80%; left: -15%; animation-duration: 90s; }
+
+/* Chuva */
+.rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10; /* Ajustado para estar acima do background-effects */
+}
+
+.rain-drop {
+  position: absolute;
+  bottom: 100%; /* Inicia acima da viewport */
+  width: 2px;
+  height: 15px; /* Ajustado para um visual de gota mais consistente */
+  background: rgba(174,194,224,0.6); /* Cor mais clara para gotas */
+  animation: fall linear infinite;
+}
+
+/* ==================== Keyframes de Animação ==================== */
+@keyframes fall {
+  to { transform: translateY(110vh); opacity: 0; } /* Gota cai e some */
+}
+
+@keyframes floatClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(150vw); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes glowPulse { /* Usado para alguns alertas */
+  0%, 100% { box-shadow: 0 0 10px 3px rgb(50, 204, 3); }
+  50% { box-shadow: 0 0 20px 6px rgb(240, 1, 1); }
+}
+
+@keyframes glow { /* Usado para alertas mais gerais */
+  from {
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.7), 0 0 10px rgba(255, 255, 0, 0.5);
+  }
+  to {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 1), 0 0 25px rgba(255, 255, 0, 0.8);
+  }
+}
+
+/* ==================== Efeitos de Alerta (Glow) ==================== */
+.glow-alert {
+  animation: glow 1s infinite alternate;
+}
+
+#clock-widget.glow-alert,
+#weather-widget.glow-alert {
+  animation: glow 1s infinite alternate;
+}

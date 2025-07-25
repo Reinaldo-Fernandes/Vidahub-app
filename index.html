@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data: https://openweathermap.org;
+    connect-src 'self' https://api.openweathermap.org https://ip-api.com https://ipinfo.io http://localhost:3333 https://www.googleapis.com;
+  ">
+  <title>Painel de Produtividade</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./styles/core.css" />
+  <link rel="stylesheet" href="./styles/widgets.css" />
+  <link rel="stylesheet" href="./styles/effects.css" />
+  <link rel="stylesheet" href="./styles/mini-mode.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="rain"></div>
+
+  <header>
+    <h1>Painel de Produtividade</h1>
+  </header>
+
+  <main class="dashboard">
+
+    <section class="widget" id="clock-widget">
+      <h2>Relógio</h2>
+      <div id="clock">00:00</div>
+      <div class="date">Segunda-feira, 5 de Junho</div>
+      <div id="clockIcons" class="icon-grid" style="margin-top: 8px;">
+        <button title="Pausa" class="icon-btn"><i class="fas fa-pause"></i></button>
+        <button title="Beber Água" class="icon-btn"><i class="fa-solid fa-glass-water"></i></button>
+        <button title="Alongar" class="icon-btn"><i class="fas fa-running"></i></button>
+        <button id="openPausasModalBtn" class="icon-btn" title="Configurar Pausas">＋</button>
+      </div>
+    </section>
+
+    <section class="widget" id="weather-widget">
+      <div class="weather-info">
+        <div class="city">Detectando localização...</div>
+        <img id="weatherIcon" src="" alt="Ícone do tempo" />
+        <div class="temp">--</div>
+        <div class="desc">Predom. ensolarado</div>
+        <div class="minmax">Mín: -- / Máx: --</div>
+      </div>
+    </section>
+
+    <section class="widget" id="todo-widget">
+      <h2>Lista de Tarefas</h2>
+
+      <div id="current-task">
+        <strong>Próxima tarefa:</strong> <span id="nextTask">Nenhuma</span>
+        <div id="taskPreview" class="task-preview-container"></div>
+      </div>
+
+      <button id="toggleTodo" aria-expanded="false" aria-controls="todoDetails">＋</button>
+
+      <div id="todoDetails" style="display: none;">
+        <div class="todo-section">
+          <h3>Manhã ☀️</h3>
+          <ul id="todoMorning"></ul>
+          <button type="button" id="clearMorning">Limpar Manhã</button>
+        </div>
+
+        <div class="todo-section">
+          <h3>Tarde 🌤️</h3>
+          <ul id="todoAfternoon"></ul>
+          <button type="button" id="clearAfternoon">Limpar Tarde</button>
+        </div>
+
+        <div class="todo-section">
+          <h3>Noite 🌙</h3>
+          <ul id="todoNight"></ul>
+          <button type="button" id="clearNight">Limpar Noite</button>
+        </div>
+
+        <div class="todo-inputs">
+          <input type="text" id="todoInput" placeholder="Nova tarefa" />
+          <input type="time" id="todoTime" />
+          <select id="todoPeriod">
+            <option value="morning">Manhã</option>
+            <option value="afternoon">Tarde</option>
+            <option value="night">Noite</option>
+          </select>
+          <button id="addTodo" type="button">Adicionar tarefa</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="widget" id="quick-links-widget">
+      <h2>Links Rápidos</h2>
+      <div class="icon-grid">
+        <a href="https://google.com" target="_blank" class="icon-btn">G</a>
+        <a href="https://gmail.com" target="_blank" class="icon-btn">M</a>
+        <a href="https://youtube.com" target="_blank" class="icon-btn">Y</a>
+        <a href="https://drive.google.com" target="_blank" class="icon-btn">D</a>
+        <a href="https://instagram.com" target="_blank" class="icon-btn">I</a>
+        <a href="https://linkedin.com" target="_blank" class="icon-btn">In</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="pausasModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" id="closePausasModalBtn">×</span>
+      <h2>Configurar Horários de Pausas</h2>
+      <div class="todo-inputs">
+        <label for="intervaloAgua">Intervalo Beber Água (minutos):</label>
+        <input type="number" id="intervaloAgua" value="15" min="1"><br><br>
+
+        <label for="intervaloAlongar">Intervalo Alongar (minutos):</label>
+        <input type="number" id="intervaloAlongar" value="30" min="1"><br><br>
+
+        <label for="intervaloPausaGeral">Intervalo Pausa Geral (minutos):</label>
+        <input type="number" id="intervaloPausaGeral" value="60" min="1"><br><br>
+
+        <button id="salvarIntervalos" type="button">Salvar Intervalos</button>
+      </div>
+
+      <div id="displaySavedIntervals" class="task-preview-container" style="margin-top: 20px;">
+        <h3>Intervalos Atuais:</h3>
+        <ul>
+          <li id="currentAgua">Beber Água: -- minutos</li>
+          <li id="currentAlongar">Alongar: -- minutos</li>
+          <li id="currentPausaGeral">Pausa Geral: -- minutos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <button id="abrirMiniModeBtn" title="Abrir Mini-Mode">Mini-Mode</button>
+
+  <script type="module" src="script.js"></script>
+  <script src="mini-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+/*
+ * Arquivo: core.css
+ * Define variáveis CSS globais, estilos de reset e estilos base para elementos HTML.
+ */
+
+/* ==================== Variáveis CSS (Cores, Sombras, Espaçamento) ==================== */
+:root {
+  --clr-bg-dark: #1e1e1e;
+  --clr-widget-bg: #2a2a2a;
+  --clr-text-light: #ffffff;
+  --clr-text-dark: #000000;
+  --clr-text-muted: #ffffffcc;
+  --clr-alert-red: 255, 0, 0;
+  --clr-alert-green: #00ff00;
+
+  --shadow-widget-dark: #151515;
+  --shadow-widget-light: #2e2e2e;
+  --shadow-neumorphic-out: 4px 4px 10px var(--shadow-widget-dark), -4px -4px 10px var(--shadow-widget-light);
+  --shadow-neumorphic-in: inset 4px 4px 10px var(--shadow-widget-dark), inset -4px -4px 10px var(--shadow-widget-light);
+  --shadow-button-active-in: inset 2px 2px 5px var(--shadow-widget-dark), inset -2px -2px 5px var(--shadow-widget-light);
+
+  --bdr-subtle: rgba(255, 255, 255, 0.1);
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+}
+
+/* ==================== Reset Básico e Estilos Globais do HTML/Body ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-text-muted);
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-color 1s ease, background-image 1s ease, color 1s ease, all 0.3s ease-in-out;
+}
+
+/* ==================== Estilos de Títulos ==================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: var(--clr-text-light);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  -webkit-text-stroke: 0.5px var(--clr-text-dark);
+}
+
+h1 {
+  font-size: 2.8rem;
+  transition: color 1s ease;
+}
+
+/* ==================== Estilos de Botões ==================== */
+button {
+  padding: var(--spacing-sm) 12px;
+  border: none;
+  background: var(--clr-widget-bg);
+  color: var(--clr-text-light);
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: var(--shadow-neumorphic-out);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  -webkit-app-region: no-drag; /* Impede que o botão arraste a janela */
+}
+
+button:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-button-active-in);
+}
+button[hidden] {
+  display: none;
+}
+
+/* ==================== Animação de Alerta Global ==================== */
+.glow-alert {
+  animation: glowPulse 1.5s ease-in-out infinite;
+  background-color: #ff5c5c !important; /* Cor de fundo vermelha para o alerta */
+}
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px 8px rgba(255, 255, 0, 0.9); /* Brilho amarelo no meio */
+  }
+}

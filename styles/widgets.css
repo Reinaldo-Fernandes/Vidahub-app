@@ -1,0 +1,296 @@
+/*
+ * Arquivo: widgets.css
+ * Estilos para os componentes de widget e modais do aplicativo.
+ */
+
+/* ==================== Layout Geral do Dashboard ==================== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==================== Estilos Comuns de Widget ==================== */
+.widget {
+  background: var(--clr-widget-bg);
+  border-radius: 20px;
+  box-shadow:
+    var(--shadow-neumorphic-in),
+    4px 4px 10px var(--shadow-widget-dark),
+    -4px -4px 10px var(--clr-text-dark);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ==================== Widget de Relógio ==================== */
+#clock {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: var(--clr-text-light);
+}
+
+.date {
+  font-size: 14px;
+  color: var(--clr-text-light);
+  margin-bottom: 5px;
+}
+
+/* ==================== Widget de Clima ==================== */
+#weather-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.weather-info img {
+  width: 25px;
+  height: 25px;
+  filter: brightness(0) invert(1);
+}
+
+.weather-info .city,
+.weather-info .temp,
+.weather-info .desc,
+.weather-info .minmax {
+  color: var(--clr-text-light);
+  text-shadow: none;
+}
+
+/* ==================== Widget de Tarefas ==================== */
+.todo-section ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--bdr-subtle);
+  color: var(--clr-text-light);
+}
+
+.todo-section ul li.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+  color: #ccc;
+}
+
+/* ==================== Widget de Links Rápidos ==================== */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 100%;
+  max-width: 200px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: var(--shadow-neumorphic-out);
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.icon-btn:hover {
+  background: #3a3a3a;
+  transform: translateY(-2px);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-button-active-in);
+}
+
+.icon-btn.google { background-color: #4285f4; }
+.icon-btn.gmail { background-color: #ea4335; }
+.icon-btn.youtube { background-color: #ff0000; }
+.icon-btn.drive { background-color: #2ecc71; }
+.icon-btn.instagram {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+.icon-btn.linkedin { background-color: #0a66c2; }
+
+/* ==================== Botão Mini-Mode ==================== */
+.btn-mini-mode {
+  margin-top: 20px;
+  background-color: var(--clr-widget-bg);
+  color: var(--clr-text-light);
+  border: none;
+  padding: 10px 180px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow-neumorphic-out);
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-mini-mode:hover {
+  background-color: #3a3a3a;
+  transform: translateY(-2px);
+}
+
+.btn-mini-mode:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-button-active-in);
+}
+
+/* ==================== Modal de Pausas ==================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--clr-widget-bg);
+  margin: auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-neumorphic-out);
+  position: relative;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  color: var(--clr-text-light);
+  border: 1px solid var(--bdr-subtle);
+}
+
+.modal-content h2 {
+  color: var(--clr-text-light);
+  margin-bottom: 15px;
+  font-size: 1.6em;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1em;
+  color: var(--clr-text-muted);
+  text-align: left;
+  padding-left: 5px;
+}
+
+.modal-content input[type="number"] {
+  width: calc(100% - 12px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-text-light);
+  font-size: 0.9em;
+  box-shadow: var(--shadow-neumorphic-in);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.modal-content input[type="number"]:focus {
+  outline: none;
+  box-shadow: inset 2px 2px 5px var(--shadow-widget-dark), inset -2px -2px 5px var(--shadow-widget-light), 0 0 0 2px var(--clr-text-light);
+}
+
+.modal-content button#salvarIntervalos {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: var(--shadow-neumorphic-out);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.modal-content button#salvarIntervalos:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content button#salvarIntervalos:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-button-active-in);
+}
+
+.close-button {
+  color: var(--clr-text-muted);
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: var(--clr-text-light);
+  text-decoration: none;
+}
+
+#displaySavedIntervals {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bdr-subtle);
+}
+
+#displaySavedIntervals h3 {
+  color: var(--clr-text-light);
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+#displaySavedIntervals ul {
+  list-style: none;
+  padding: 0;
+}
+
+#displaySavedIntervals li {
+  background-color: var(--clr-bg-dark);
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  color: var(--clr-text-muted);
+  font-size: 1em;
+  box-shadow: var(--shadow-neumorphic-in);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
