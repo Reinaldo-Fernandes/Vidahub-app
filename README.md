@@ -9,6 +9,9 @@ Um painel interativo e responsivo que reúne clima, relógio, tarefas e links r�
 Este projeto foi criado para **aumentar o foco e a produtividade diária**, centralizando informações úteis em uma interface limpa e funcional. Ele evita distrações, organiza tarefas por período do dia e ainda mostra as condições climáticas em tempo real.
 
 ---
+## 🖼️ Demonstração
+
+![Vd](https://github.com/user-attachments/assets/5d4d31dc-c289-40c0-932e-6b7bd4d4688d)
 
 ## 🧩 Principais Funcionalidades
 
