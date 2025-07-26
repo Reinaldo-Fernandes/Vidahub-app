@@ -31,9 +31,6 @@ Este projeto foi criado para **aumentar o foco e a produtividade diária**, cent
 - Muda o fundo e tema de acordo com o tempo (ex: chuva, sol, noite, etc.)
 - Animações visuais (nuvens flutuantes e chuva)
 
-### 🔍 Barra de Pesquisa
-- Pesquise diretamente no Google com `Enter`
-
 ### 🚀 Links Rápidos
 - Acesso rápido aos principais serviços: Google, Gmail, YouTube, Instagram, etc.
 
